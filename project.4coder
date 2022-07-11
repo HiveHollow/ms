@@ -1,0 +1,48 @@
+version(1);
+project_name = "New C++ Project";
+patterns = {
+"*.h",
+"*.hpp",
+"*.hin",
+"*.c",
+"*.cpp",
+"*.cin",
+"*.ps",
+"*.vs",
+"*.cs",
+"*.ts",
+"*.gs",
+"*.inl",
+"*.jai",
+"*.js",
+"*.json",
+"*.bat",
+"*.txt",
+"*.sh",
+"*.4coder",
+};
+blacklist_patterns = {
+".*",
+};
+load_paths_base = {
+ { ".", .relative = true, .recursive = true, },
+};
+load_paths = {
+ { load_paths_base, .os = "win", },
+ { load_paths_base, .os = "linux", },
+ { load_paths_base, .os = "mac", },
+};
+
+command_list = {
+ { .name = "buildvars",
+   .out = "*compilation*", .footer_panel = true, .save_dirty_files = true,
+   .cmd = { { ".\\buildvars.bat" , .os = "win"   },
+            { "./buildvars.sh", .os = "linux" },
+            { "./buildvars.sh", .os = "mac"   }, }, },
+ { .name = "run",
+   .out = "*run*", .footer_panel = false, .save_dirty_files = false,
+   .cmd = { { "jai.exe", .os = "win"   },
+          }, },
+};
+fkey_command[1] = "buildvars";
+fkey_command[3] = "run";
